@@ -259,8 +259,10 @@ async fn avatar_handler(
 }
 
 fn render_to_png(rendered: &str, size: u64) -> Result<Vec<u8>, String> {
-    let tree = usvg::Tree::from_data(rendered.as_bytes(), &Default::default())
-        .map_err(|_| "Error parsing SVG")?;
+    let mut options = usvg::Options::default();
+    options.fontdb_mut().load_system_fonts();
+    let tree =
+        usvg::Tree::from_data(rendered.as_bytes(), &options).map_err(|_| "Error parsing SVG")?;
     let mut pixmap =
         tiny_skia::Pixmap::new(size as u32, size as u32).ok_or("Error creating pixmap")?;
     resvg::render(&tree, Transform::identity(), &mut pixmap.as_mut());
