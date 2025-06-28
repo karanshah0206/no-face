@@ -1,0 +1,6 @@
+api_root = "http://localhost:8080"
+max_size = 2048
+
+# Changes to this section are not reloaded by SIGHUP.
+[startup]
+bind = "127.0.0.1:8080"

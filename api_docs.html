@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No-Face API Docs</title>
+    <link rel="icon" href="smile/64/No-Face" type="image/svg+xml">
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 0 auto;
+            padding: 1em;
+            max-width: 80ch;
+            line-height: 1.6;
+            color: #222;
+        }
+
+        h1,
+        h2 {
+            margin: 1rem 0;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #000;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        code {
+            background: #eee;
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        a {
+            color: #37b;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        li {
+            margin: 0.3em 0;
+        }
+
+        #previews {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 8px;
+        }
+
+        figure {
+            margin: 0;
+            padding: 8px;
+            background: #eee;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        figure > img {
+            border-radius: 6px;
+        }
+        
+        figcaption {
+            margin-top: 1em;
+            font-family: monospace;
+        }
+
+        @media screen and (prefers-color-scheme: dark) {
+            body {
+                background: #222;
+                color: #fff;
+            }
+
+            h1,
+            h2 {
+                border-bottom-color: white;
+            }
+
+            code, figure {
+                background: #444;
+            }
+
+            a {
+                color: #9ce;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>No-Face</h1>
+    <p>
+        This is a simple API for generating pseudo-random avatars for users without one.
+        You give it a unique ID for each user – this could be their username, a UUID, or anything else that isn't likely to be shared by other users.
+        It will return a randomly generated image, but as long as you use the same ID, you'll receive the same image each time.
+    </p>
+
+    <h2>Usage</h2>
+    <p>
+        API requests take the following form: <code>{{ api_root }}/[style]/[size]/[id][ext]</code>
+    </p>
+    <p>
+        For example: <a href="smile/240/MarkScout.png">{{ api_root }}/smile/240/MarkScout.png</a>
+    </p>
+    <ul>
+        <li><code>style</code> must be one of the supported styles shown below.</li>
+        <li><code>size</code> determines the size of the image in pixels. It must be less than or equal to {{ max_size }}.</li>
+        <li><code>id</code> is the unique ID you want to generate an avatar for.</li>
+        <li><code>ext</code> can be <code>.svg</code> or <code>.png</code> to select the image format. It can also be omitted, defaulting to SVG.</li>
+    </ul>
+
+    <h2>Styles</h2>
+    <div id="previews">
+        {% for style in styles %}
+        <figure>
+            <img src="{{ style }}/320/Sample.png" alt="Broken style">
+            <figcaption>{{ style }}</figcaption>
+        </figure>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

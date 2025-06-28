@@ -1,0 +1,19 @@
+<svg width="{{ size }}" height="{{ size }}" viewBox="0 0 100 100" version="1.1"
+    xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="{{ random_color("background") }}" />
+    <circle
+        cx="{{ 50 + 40 * cos(random("angle1", 360)) }}"
+        cy="{{ 50 + 40 * sin(random("angle1", 360)) }}"
+        r="50"
+        fill="{{ random_color("foreground1") }}" />
+    <circle
+        cx="{{ 50 + 30 * cos(random("angle2", 360)) }}"
+        cy="{{ 50 + 30 * sin(random("angle2", 360)) }}"
+        r="30"
+        fill="{{ random_color("foreground2") }}" />
+    <circle cx="30" cy="40" r="5" />
+    <circle cx="70" cy="40" r="5" />
+    <path
+        d="M 25 65 A 50 40 0 0 0 75 65"
+        fill="none" stroke="black" stroke-width="4" stroke-linecap="round" />
+</svg>
