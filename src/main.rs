@@ -54,11 +54,11 @@ enum ImageFormat {
 
 fn load_config(state: &mut ApiState) {
     let Ok(config_string) = fs::read_to_string(CONFIG_PATH) else {
-        println!("Unable to read no-face config!");
+        println!("Unable to read {}!", CONFIG_PATH);
         return;
     };
     let Ok(new_config) = toml::from_str(&config_string) else {
-        println!("Unable to parse no-face config!");
+        println!("Unable to parse {}!", CONFIG_PATH);
         return;
     };
     state.config = new_config;
